@@ -3,8 +3,14 @@ https://bugs.immunefi.com/dashboard/submission/14204
 ```bash
 docker pull ghcr.io/foundry-rs/foundry:latest
 docker tag ghcr.io/foundry-rs/foundry:latest foundry:latest
-docker run -v $PWD:/app -i -t foundry sh
+docker run --rm -v $PWD:/app -i -t foundry sh
 
-cd /app
-forge test --fork-url RPC_URL --fork-block-number 44985556 --revert-strings debug -vvv
+forge install
+
+# before the hotfix
+forge test --root /app --fork-url RPC_URL --fork-block-number 44985556 --revert-strings debug -vvv
+
+# after the hotfix
+forge test --root /app --fork-url RPC_URL --fork-block-number 47077309 --revert-strings debug -vvv
+forge test --root /app --fork-url RPC_URL --fork-block-number 49427439 --revert-strings debug -vvv
 ```
