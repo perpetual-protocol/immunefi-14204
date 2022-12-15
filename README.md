@@ -5,7 +5,9 @@ docker pull ghcr.io/foundry-rs/foundry:latest
 docker tag ghcr.io/foundry-rs/foundry:latest foundry:latest
 docker run --rm -v $PWD:/app -i -t foundry sh
 
+cd /app
 forge install
+forge install transmissions11/solmate --no-commit
 
 # before the hotfix
 forge test --root /app --fork-url RPC_URL --fork-block-number 44985556 --revert-strings debug -vvv
